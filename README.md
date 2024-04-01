@@ -1,2 +1,1 @@
-# CS689-Computational-Linguistics-for-Indian-languages
-Project for Computational Linguistics for Indian Language
+## All backend code and fucntionality will come here
