@@ -2,8 +2,10 @@ import json
 from flask import Flask, request, jsonify
 from utils.predict_next_nepali_word import nextNepaliWord
 from initialization import initialize_model
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Load the model one time only at the beginning of the program
 tokenizer, indicBARTModel, nepali_model = initialize_model()
@@ -22,8 +24,9 @@ def predict_next_word_api():
 def predict_next_nepali_word_api():
     data = request.get_json()
     word = data['word']
-    print("requested word ",word)
-    prediction = nextNepaliWord(word, nepali_model)
+    prediction_count = data['prediction-count']
+
+    prediction = nextNepaliWord(word, nepali_model, prediction_count)
     # Convert list of strings to JSON format
     json_response = json.dumps({"predictions": prediction}, ensure_ascii=False)
     return json_response

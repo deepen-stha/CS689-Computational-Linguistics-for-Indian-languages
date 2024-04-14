@@ -1,7 +1,5 @@
 import random
-# from initialization import nepali_model
 
-# function to find the best next word for nepali language
 def best_candidate(nepali_model, prev, i, without=[], gen=True):
     """Choose the most likely next token given the previous (n-1) tokens.
     Args:
@@ -27,17 +25,28 @@ def best_candidate(nepali_model, prev, i, without=[], gen=True):
     
     # if the task is not to generate sentence, we will return multiple word suggestions
     if not gen:
-        nS = 7 if len(candidates)>6 else len(candidates)
+        nS = 5 if len(candidates)>4 else len(candidates)
         return random.sample(candidates[::-1],nS)
     
     candidate_index = int((random.randint(0, len(candidates)))//3)
     return candidates[candidate_index if prev != () and prev[-1] != "<s>" else i] 
 
 
-def nextNepaliWord(mySent,nepali_model):
-    prev = tuple(mySent.split()[-2:])
-    suggest = best_candidate(nepali_model, prev, 0, without=[], gen=False)
-    if type(suggest) == int:
+def nextNepaliWord(request_sentence,nepali_model, prediction_count):
+    """
+    Generate word suggestions for completing a Nepali sentence using a predictive model.
+    
+    :param sentence: The input sentence string for which to predict the next words.
+    :param nepali_model: The predictive model used for generating word suggestions.
+    :param prediction_count: The number of predictions to return.
+    :return: A list of suggested words.
+    """
+    previous_word = tuple(request_sentence.split()[-2:])
+    word_suggestions = best_candidate(nepali_model, previous_word, 0, without=[], gen=False)
+    if type(word_suggestions) == int:
         return ["No suggestions"]
-    suggestions = [f"{mySent} {sugg[0]} : {sugg[1]}" for sugg in suggest]
-    return suggestions  # Return a list of strings
+    final_suggestions = []
+    for i in range(prediction_count):
+       final_suggestions.append(f"{word_suggestions[i][0]}")
+        
+    return final_suggestions
