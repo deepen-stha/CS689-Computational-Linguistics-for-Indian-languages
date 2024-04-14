@@ -46,7 +46,7 @@ def nextNepaliWord(request_sentence,nepali_model, prediction_count):
     if type(word_suggestions) == int:
         return ["No suggestions"]
     final_suggestions = []
-    for i in range(prediction_count):
+    for i in range(len(word_suggestions)):
        final_suggestions.append(f"{word_suggestions[i][0]}")
         
     return final_suggestions
