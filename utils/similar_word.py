@@ -34,7 +34,7 @@ def get_sanscript(script):
     else:
         return sanscript.DEVANAGARI
     
-def get_model(source_sanscript,hindi_model,malyalam_model,nepali_model):
+def get_fasttext_model(source_sanscript,hindi_model,malyalam_model,nepali_model):
     """
     function to check and get the requried model for fasttext
     """

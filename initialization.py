@@ -1,6 +1,7 @@
 import pickle
 from transformers import pipeline
 import fasttext.util
+from ai4bharat.transliteration import XlitEngine
 
 def initialize_model():
     """
@@ -26,3 +27,11 @@ def initialize_fasttext_model():
     malyalam_model = fasttext.load_model('cc.ml.300.bin')
     nepali_model = fasttext.load_model('cc.ne.300.bin')
     return hindi_model, malyalam_model,nepali_model
+
+def intializeXlitEngine():
+    indic_to_hindi_xlite_engine = XlitEngine(["hi", "ml","ne"], beam_width=6)
+    hindi_to_indic_xlite_engine = XlitEngine(src_script_type="indic", beam_width=10, rescore=False) # indic script(eg: namaste)
+    return indic_to_hindi_xlite_engine, hindi_to_indic_xlite_engine
+
+
+
