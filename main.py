@@ -64,8 +64,8 @@ def predict_next_nepali_word_api():
 #     json_response = json.dumps({"predictions": predictions}, ensure_ascii=False)
 #     return json_response
 
-# adding route for tranlisteration
-@app.route('/transliteration', methods=['POST'])
+# adding route for transliterate
+@app.route('/transliterate', methods=['POST'])
 def perform_transliteration():
     data = request.get_json()
     word = data['word']
