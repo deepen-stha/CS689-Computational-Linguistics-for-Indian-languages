@@ -27,25 +27,21 @@ def predict_next_word_api():
     data = request.get_json()
     context = data['context']
     prediction_count = data['prediction-count']
-    nepali_word = translate_malyalam_to_nepali(context, translator)
-    prediction = nextNepaliWord(nepali_word, nepali_model, prediction_count)
-    malyalam_predicted_word = []
-    for pred in prediction:
-        malyalam_predicted_word.append(translate_nepali_to_malyalam(pred, translator))
+    language = data['language']
+    # if it is malyalam then 
+    if str.lower(language) == "malyalam":
+        nepali_word = translate_malyalam_to_nepali(context, translator)
+        prediction = nextNepaliWord(nepali_word, nepali_model, prediction_count)
+        malyalam_predicted_word = []
+        for pred in prediction:
+            malyalam_predicted_word.append(translate_nepali_to_malyalam(pred, translator))
 
-    json_response = json.dumps({"predictions": malyalam_predicted_word}, ensure_ascii=False)
-    return json_response
-
-# adding route for predicting next word for nepali language
-@app.route('/predict_next_nepali_word', methods=['POST'])
-def predict_next_nepali_word_api():
-    data = request.get_json()
-    context = data['context']
-    prediction_count = data['prediction-count']
-
-    prediction = nextNepaliWord(context, nepali_model, prediction_count)
-    json_response = json.dumps({"predictions": prediction}, ensure_ascii=False)
-    return json_response
+        json_response = json.dumps({"predictions": malyalam_predicted_word}, ensure_ascii=False)
+        return json_response
+    else:
+        prediction = nextNepaliWord(context, nepali_model, prediction_count)
+        json_response = json.dumps({"predictions": prediction}, ensure_ascii=False)
+        return json_response
 
 # # adding route for similar word
 # @app.route('/similar-word', methods=['POST'])
