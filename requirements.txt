@@ -2,3 +2,10 @@ fasttext-wheel
 transformers
 torch
 indic-transliteration
+click
+Flask
+gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+Werkzeug
