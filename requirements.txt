@@ -2,12 +2,12 @@ fasttext-wheel
 transformers
 torch
 indic-transliteration
-click
+# click
 Flask
 gunicorn
-itsdangerous
-Jinja2
-MarkupSafe
-Werkzeug
+# itsdangerous
+# Jinja2
+# MarkupSafe
+# Werkzeug
 ai4bharat-transliteration
 toml
