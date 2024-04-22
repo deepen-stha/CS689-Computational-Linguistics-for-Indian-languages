@@ -9,3 +9,5 @@ itsdangerous
 Jinja2
 MarkupSafe
 Werkzeug
+ai4bharat-transliteration
+toml
