@@ -1,7 +1,7 @@
 fasttext-wheel
 transformers
 torch
-indic-transliteration
+# indic-transliteration
 # click
 Flask
 gunicorn
@@ -10,4 +10,4 @@ gunicorn
 # MarkupSafe
 # Werkzeug
 ai4bharat-transliteration
-toml
+# toml
